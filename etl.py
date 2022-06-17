@@ -3,8 +3,7 @@ from datetime import datetime
 import os
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import udf, col
-from pyspark.sql.functions import year, month, dayofmonth, hour, weekofyear, date_format
-
+from pyspark.sql.functions import year, month, dayofmonth, hour, weekofyear, date_format,dayofweek
 
 config = configparser.ConfigParser()
 config.read('dl.cfg')
@@ -65,7 +64,15 @@ def process_log_data(spark, input_data, output_data):
     df = df.withColumn("datetime", get_datetime(df.timestamp))
     
     # TODO: extract columns to create time table
-    time_table = 
+    # start_time, hour, day, week, month, year, weekday
+
+    df = df.withColumn("hour", hour(df.datetime))
+    df = df.withColumn("day", dayofmonth(df.datetime))
+    df = df.withColumn("week", weekofyear(df.datetime))
+    df = df.withColumn("month", month(df.datetime))
+    df = df.withColumn("year", year(df.datetime))
+    df = df.withColumn("weekday", dayofweek(df.datetime))
+    time_table = df.select("hour", "day", "week", "month", "year", "weekday")
     
     # TODO: write time table to parquet files partitioned by year and month
     time_table
