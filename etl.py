@@ -25,13 +25,13 @@ def process_song_data(spark, input_data, output_data):
     # TODO: get filepath to song data file
     song_data = config['S3']['song_data']
     # TODO: read song data file
-    df = 
+    df = spark.read.json(song_data)
 
     # TODO: extract columns to create songs table
     songs_table = df.select("song_id","title","artist_id", "year", "duration")
     
     # TODO: write songs table to parquet files partitioned by year and artist
-    songs_table
+    songs_table.write.partitionBy("year","artist_id").mode("overwrite").parquet(output_data+"songs_table.parquet")
 
     # TODO: extract columns to create artists table
     artists_table = 
