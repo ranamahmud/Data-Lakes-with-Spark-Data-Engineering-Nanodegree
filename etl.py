@@ -75,7 +75,7 @@ def process_log_data(spark, input_data, output_data):
     time_table = df.select("hour", "day", "week", "month", "year", "weekday")
     
     # TODO: write time table to parquet files partitioned by year and month
-    time_table
+    time_table.write.partitionBy("year","month").mode("overwrite").parquet(output_data+"time_table.parquet")
 
     # TODO: read in song data to use for songplays table
     song_df = 
