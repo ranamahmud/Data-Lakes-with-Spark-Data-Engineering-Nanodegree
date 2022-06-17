@@ -42,10 +42,10 @@ def process_song_data(spark, input_data, output_data):
 
 def process_log_data(spark, input_data, output_data):
     # TODO: get filepath to log data file
-    log_data =
+    log_data = config['S3']['log_data']
 
     # TODO: read log data file
-    df = 
+    df = spark.read.json(log_data)
     
     # TODO: filter by actions for song plays
     df = 
