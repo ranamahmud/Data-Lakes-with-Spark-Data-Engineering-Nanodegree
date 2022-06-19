@@ -12,6 +12,6 @@ As their data engineer, I've built an ETL pipeline that extracts their data from
 3. Run the following command in terminal 
    ```python etl.py```
 ## Files in the repository
-ETL pipeline: etl.py
-Instructions file: README.md
-Configuration file dl.cfg
+ETL pipeline: [etl.py](etl.py)
+Instructions file: [README.md](README.md)
+Configuration file [dl.cfg](dl.cfg)

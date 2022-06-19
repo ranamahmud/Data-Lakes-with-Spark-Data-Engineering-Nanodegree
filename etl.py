@@ -22,6 +22,9 @@ def create_spark_session():
 
 
 def process_song_data(spark, input_data, output_data):
+    """
+    Processes song data.
+    """
     # get filepath to song data file
     song_data = input_data + "/song_data/*/*/*/*"
     # read song data file
@@ -42,7 +45,10 @@ def process_song_data(spark, input_data, output_data):
 
 
 def process_log_data(spark, input_data, output_data):
-   # get filepath to log data file
+    """
+    Processes log data.
+    """
+    # get filepath to log data file
     log_data = input_data + "/log-data/"
     # get filepath to song data file
     song_data = input_data + "/song_data/*/*/*/*"
@@ -93,9 +99,10 @@ def process_log_data(spark, input_data, output_data):
 
 def main():
     spark = create_spark_session()
-#     input_data = "s3a://udacity-dend/"
-    input_data = "data/"
-    output_data = "output/"
+    input_data = "s3a://udacity-dend/"
+    # input_data = "data/"
+    output_data = "s3a://udacity-dend/"
+    # output_data = "output/"
     
     process_song_data(spark, input_data, output_data)    
     process_log_data(spark, input_data, output_data)
